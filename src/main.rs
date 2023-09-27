@@ -2,7 +2,7 @@ mod utils;
 pub mod collagecreator;
 
 use std::{fs, io};
-use collagecreator::{TrialOptions, CollageCreator};
+use collagecreator::{collagecreator::CollageCreator, trialoptions::TrialOptions};
 use image::{open, RgbaImage, ImageError};
 
 fn get_image(path: &str) -> Result<RgbaImage, ImageError> {
