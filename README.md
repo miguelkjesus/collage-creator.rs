@@ -1,4 +1,4 @@
-# collage-creator
+# collage-creator.rs
 
 creates a collage from a bunch of source images to try and recreate a target image.
 

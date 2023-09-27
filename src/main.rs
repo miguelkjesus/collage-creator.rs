@@ -2,7 +2,7 @@ mod utils;
 pub mod collagecreator;
 
 use std::{fs, io};
-use collagecreator::{recreate, Trial};
+use collagecreator::{TrialOptions, CollageCreator};
 use image::{open, RgbaImage, ImageError};
 
 fn get_image(path: &str) -> Result<RgbaImage, ImageError> {
@@ -43,13 +43,20 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         sources.push(get_image(&source_path)?)
     }
 
-    recreate(target, sources, &mut output, Trial {
-        init_attempts: 200,
-        survivors: 20,
-        offspring: 10,
-        generations: 5,
-        offspring_mutation_modifier: 0.8
-    });
+    let mut cc = CollageCreator {
+        target: &target,
+        sources: &sources,
+        output: &mut output,
+        trial_options: TrialOptions {
+            init_attempts: 200,
+            survivors: 20,
+            offspring: 10,
+            generations: 5,
+            offspring_mutation_modifier: 0.8
+        }
+    };
+
+    cc.start(100);
     
     Ok(())
 }
