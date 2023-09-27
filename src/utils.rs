@@ -1,3 +1,4 @@
+#[allow(unused_macros)]
 macro_rules! tuple_as {
     ($t: expr, $ty: ident) => {{
         let (a, b) = $t;
